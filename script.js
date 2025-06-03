@@ -16,4 +16,8 @@ function division (a, b) {
 
 let operandOne = 0;
 let operandTwo = 0;
-let operator = "";
+let operator = null;
+
+
+const calculatorDisplay = document.getElementById("display");
+calculatorDisplay.textContent = 0;
