@@ -17,6 +17,8 @@ function division (a, b) {
 let operandOne = 0;
 let operandTwo = 0;
 let operator = null;
+let awaitingNextNumber = false;
+
 
 
 const calculatorDisplay = document.getElementById("display");
@@ -27,8 +29,10 @@ const numButtons = document.querySelectorAll(".btn");
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
         const clickedNumber = button.dataset.number;
-
-        if (calculatorDisplay.textContent === '0') {
+        if (awaitingNextNumber == true) {
+            calculatorDisplay.textContent = clickedNumber;
+            awaitingNextNumber = false;
+        } else if (calculatorDisplay.textContent === '0') {
             calculatorDisplay.textContent = clickedNumber;
         } else {
             calculatorDisplay.textContent += button.dataset.number;
@@ -46,20 +50,36 @@ operatorButtons.forEach(button => {
         const clickedOperator = button.dataset.operator;
         if (clickedOperator === '=') {
             operandTwo = calculatorDisplay.textContent;
+            let result = operate(operator, operandOne, operandTwo);
+            calculatorDisplay.textContent = result;
+            awaitingNextNumber = true;
+            operator = null;
+            operandOne = null;
+            operandTwo = null;
+
         } else {
-        operandOne = calculatorDisplay.textContent;
-        operator = clickedOperator;
-        calculatorDisplay.textContent = '0';
+            if (operator !== null && operandOne !== null) {
+                operandTwo = calculatorDisplay.textContent;
+                let result = operate(operator, operandOne, operandTwo)
+                operandOne = result;
+                calculatorDisplay.textContent = result;
+            } else {
+                operandOne = calculatorDisplay.textContent;
+            } 
+            operator = clickedOperator;
+            calculatorDisplay.textContent = '0';
         
         }
   
-    })
+    });
     
-})
+});
 
 
 function operate (operator, num1, num2) {
     let result;
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
     switch(operator) {
         case '+':
            result = addition(num1, num2);
@@ -76,3 +96,11 @@ function operate (operator, num1, num2) {
     }
 }
 
+const clearButton = document.querySelector(".btn-clear");
+
+clearButton.addEventListener("click", () => {
+ operandOne = 0;
+ operandTwo = 0;
+ operator = null;
+ calculatorDisplay.textContent = '0';
+})
