@@ -11,7 +11,12 @@ function multiplication (a, b) {
 }
 
 function division (a, b) {
-    return a / b;
+    if (b === 0) {
+        return "Can't divide by 0!"
+    } else {
+        return a / b;
+    }
+    
 }
 
 let operandOne = 0;
@@ -83,16 +88,25 @@ function operate (operator, num1, num2) {
     switch(operator) {
         case '+':
            result = addition(num1, num2);
+           result = parseFloat(result.toFixed(2));
            return result;
         case '-':
             result =  subtraction(num1, num2);
+            result = parseFloat(result.toFixed(2));
             return result;
         case '*':
             result =  multiplication(num1, num2);
+            result = parseFloat(result.toFixed(2));
             return result;
         case '/':
             result =  division(num1, num2);
-            return result;            
+            if (typeof result === 'string') {
+                return result;
+            } else {
+                result = parseFloat(result.toFixed(2));
+                return result;
+            }
+                        
     }
 }
 
