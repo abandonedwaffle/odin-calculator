@@ -66,7 +66,7 @@ operatorButtons.forEach(button => {
                 operandTwo = null;
             }
         } else {
-            if ((operator !== null && operandOne !== null) && (calculatorDisplay.textContent !== '0') ) {
+            if ((operator !== null && operandOne !== null) && (calculatorDisplay.textContent !== '0')) {
                 operandTwo = calculatorDisplay.textContent;
                 let result = operate(operator, operandOne, operandTwo)
                 operandOne = result;
