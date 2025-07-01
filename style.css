@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+
+#main {
+    background-color: #A9A9A9;
+    border-radius: 25px;
+    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+#display {
+    background-color: #4A6D4B;
+    color:  #222222;
+    font-family: 'VT323', monospace;
+    padding: 20px;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+#main button {
+    background-color: #333333;
+    color: #FFFFFF;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.5em;
+    border: none;
+    cursor: pointer;
+}
+
+.number-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.button-row {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    
+}
+.operator-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
